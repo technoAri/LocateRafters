@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"]
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss']
 })
 export class HomePage {
   country: string;
   constructor(private geolocation: Geolocation) {
-    this.country = 'INDIA';
+    this.country = 'india';
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
@@ -24,12 +24,12 @@ export class HomePage {
       .then(resp => {
         // resp.coords.latitude
         // resp.coords.longitude
-        console.log("geolocation called");
+        console.log('geolocation called');
         console.log(resp.coords.latitude);
         console.log(resp.coords.longitude);
       })
       .catch(error => {
-        console.log("Error getting location", error);
+        console.log('Error getting location', error);
       });
 
     const watch = this.geolocation.watchPosition();

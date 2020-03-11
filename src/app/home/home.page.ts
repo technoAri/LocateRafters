@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+// tslint:disable-next-line: max-line-length
+import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +10,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 })
 export class HomePage {
   country: string;
-  constructor(private geolocation: Geolocation) {
+  constructor(private geolocation: Geolocation, private geoCoder: NativeGeocoder) {
     this.country = 'india';
   }
 
@@ -25,8 +27,13 @@ export class HomePage {
         // resp.coords.latitude
         // resp.coords.longitude
         console.log('geolocation called');
+        console.log(resp);
         console.log(resp.coords.latitude);
         console.log(resp.coords.longitude);
+
+        // tslint:disable-next-line: max-line-length
+        this.geoCoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude).then((result: NativeGeocoderResult[]) => console.log(JSON.stringify(result[0].countryName)))
+          .catch((error: any) => console.log(error));
       })
       .catch(error => {
         console.log('Error getting location', error);

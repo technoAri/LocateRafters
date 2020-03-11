@@ -13,6 +13,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 const firebaseConfig = {
   // apiKey: '<your-key>',
@@ -37,6 +38,7 @@ const firebaseConfig = {
     StatusBar,
     SplashScreen,
     GooglePlus,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

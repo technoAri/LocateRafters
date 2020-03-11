@@ -3,6 +3,7 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { NavController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { config } from '@ionic/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,20 +21,24 @@ export class LoginPage implements OnInit {
   };
 
   userProfile: any = null;
-  constructor(public navCtrl: NavController, private googlePlus: GooglePlus) {
+  constructor(public navCtrl: NavController, private googlePlus: GooglePlus, private router: Router) {
     firebase.initializeApp(this.firebaseConfig);
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userProfile = user;
+        this.router.navigate(['/home']);
       } else {
         this.userProfile = null;
       }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // console.log();
+  }
 
   loginUser(): void {
+    console.log("login called");
     this.googlePlus
       .login({
         webClientId:
@@ -50,6 +55,7 @@ export class LoginPage implements OnInit {
             .signInWithCredential(googleCredential)
             .then(response => {
               console.log('Firebase success: ' + JSON.stringify(response));
+              this.router.navigate(['/home']);
             });
         },
         err => {

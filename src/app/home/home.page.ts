@@ -7,8 +7,12 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   styleUrls: ["home.page.scss"]
 })
 export class HomePage {
-  constructor(private geolocation: Geolocation) {}
+  country: string;
+  constructor(private geolocation: Geolocation) {
+    this.country = 'INDIA';
+  }
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
     this.getLocation();
   }
@@ -36,5 +40,9 @@ export class HomePage {
       console.log(data.coords.latitude);
       console.log(data.coords.longitude);
     });
+  }
+
+  segmentChanged(event) {
+    console.log(event);
   }
 }

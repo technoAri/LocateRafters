@@ -22,7 +22,9 @@ export class LoginPage implements OnInit {
 
   userProfile: any = null;
   constructor(public navCtrl: NavController, private googlePlus: GooglePlus, private router: Router) {
-    firebase.initializeApp(this.firebaseConfig);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(this.firebaseConfig);
+    }
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.userProfile = user;

@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-segment [(ngModel)]="country">
+  <ion-segment [(ngModel)]="country" (ionChange)="segmentChange($event)">
     <ion-segment-button value="india">
       <ion-label>INDIA</ion-label>
     </ion-segment-button>
@@ -16,9 +16,15 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-list padding>
+  <ion-list id="indiaList" padding *ngIf='isIndiaPressed'>
     <ion-item *ngFor="let item of raftersListIndia">
         {{item}}
+    </ion-item>
+  </ion-list>
+
+  <ion-list id="saList" padding *ngIf='isSAPressed'>
+    <ion-item *ngFor="let item of raftersListSA">
+      {{item}}
     </ion-item>
   </ion-list>
 

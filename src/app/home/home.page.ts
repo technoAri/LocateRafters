@@ -14,6 +14,8 @@ export class HomePage {
   countryName: string;
   raftersListIndia = [];
   raftersListSA = [];
+  isIndiaPressed = false;
+  isSAPressed = false;
   constructor(private geolocation: Geolocation, private geoCoder: NativeGeocoder, private loginPage: LoginPage) {
     this.country = 'india';
   }
@@ -28,12 +30,6 @@ export class HomePage {
     this.geolocation
       .getCurrentPosition()
       .then(resp => {
-        // resp.coords.latitude
-        // resp.coords.longitude
-        // console.log('geolocation called');
-        // console.log(resp);
-        // console.log(resp.coords.latitude);
-        // console.log(resp.coords.longitude);
 
         if (resp) {
           this.geoCoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude)
@@ -44,7 +40,6 @@ export class HomePage {
               } else {
                 this.raftersListSA.push(this.loginPage.userProfile.displayName);
               }
-              console.log('RLI', this.raftersListIndia.length);
             })
             .catch((error: any) => console.log(error));
         }
@@ -56,15 +51,12 @@ export class HomePage {
 
     const watch = this.geolocation.watchPosition();
     watch.subscribe(data => {
-      // data can be a set of coordinates, or an error (if an error occurred).
-      // data.coords.latitude
-      // data.coords.longitude
+
       console.log(data.coords.latitude);
       console.log(data.coords.longitude);
       this.geoCoder.reverseGeocode(data.coords.latitude, data.coords.longitude)
         .then((result: NativeGeocoderResult[]) => {
           console.log(result[0].countryName);
-          // this.raftersListIndia.push(this.loginPage.userProfile.displayName);
           if (result[0].countryName === 'India') {
             this.raftersListIndia.push(this.loginPage.userProfile.displayName);
           } else {
@@ -80,19 +72,26 @@ export class HomePage {
               this.raftersListSA.splice(i + 1);
             }
           }
-          // console.log('RLI 1', this.raftersListIndia.length);
-          // if (JSON.stringify(result[0].countryName) === 'India') {
-          //   this.raftersListIndia.push(this.loginPage.userProfile.displayName);
-          //   console.log('RLI 1', this.raftersListIndia.length);
-          // } else {
-          //   this.raftersListSA.push(this.loginPage.userProfile.displayName);
-          // }
+          console.log('RLI', this.raftersListIndia.length);
+          console.log('RLS', this.raftersListSA.length);
         })
         .catch((error: any) => console.log(error));
     });
   }
 
-  segmentChanged(event) {
-    console.log(event);
+  segmentChange(event) {
+    let indiaList = document.getElementById('indiaList');
+    let saList = document.getElementById('saList');
+    console.log('event', event.detail.value);
+    console.log('RLI', this.raftersListIndia.length);
+    console.log('RLS', this.raftersListSA.length);
+    if (event.detail.value === 'india') {
+      this.isIndiaPressed = true;
+      this.isSAPressed = false;
+      // saList.setV
+    } else {
+      this.isSAPressed = true;
+      this.isIndiaPressed = false;
+    }
   }
 }

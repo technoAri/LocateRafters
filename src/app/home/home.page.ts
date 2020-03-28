@@ -30,7 +30,7 @@ export class HomePage {
     this.geolocation
       .getCurrentPosition()
       .then(resp => {
-
+      
         if (resp) {
           this.geoCoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude)
             .then((result: NativeGeocoderResult[]) => {
@@ -43,7 +43,6 @@ export class HomePage {
             })
             .catch((error: any) => console.log(error));
         }
-
       })
       .catch(error => {
         console.log('Error getting location', error);

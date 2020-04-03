@@ -15,14 +15,19 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { LoginPage } from './login/login.page';
 import { LoginPageModule } from './login/login.module';
 
-const firebaseConfig = {
-  // apiKey: '<your-key>',
-  // authDomain: '<your-project-authdomain>',
-  // databaseURL: '<your-database-URL>',
-  // projectId: '<your-project-id>',
-  // storageBucket: '<your-storage-bucket>',
-  // messagingSenderId: '<your-messaging-sender-id>'
+var firebaseConfig = {
+  apiKey: 'AIzaSyDtx0UBkNLctituiP7bD2mQD2rS3oYbWzY',
+  authDomain: 'locaterafters.firebaseapp.com',
+  databaseURL: 'https://locaterafters.firebaseio.com',
+  projectId: 'locaterafters',
+  storageBucket: 'locaterafters.appspot.com',
+  messagingSenderId: '424112178216',
+  appId: '1:424112178216:web:8237f2b1c9efe2b2faa11d',
+  measurementId: 'G-PXP7R08K48'
 };
+// Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
 @NgModule({
   declarations: [AppComponent],

@@ -3,6 +3,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 // tslint:disable-next-line: max-line-length
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { LoginPage } from '../login/login.page';
+import { Todo, TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-home',
@@ -16,13 +17,21 @@ export class HomePage {
   raftersListSA = [];
   isIndiaPressed = false;
   isSAPressed = false;
-  constructor(private geolocation: Geolocation, private geoCoder: NativeGeocoder, private loginPage: LoginPage) {
+  todos: Todo[];
+
+  constructor(private geolocation: Geolocation,
+              private geoCoder: NativeGeocoder,
+              private loginPage: LoginPage,
+              private todoService: TodoService) {
     this.country = 'india';
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
     this.getLocation();
+    this.todoService.getTodos().subscribe(res => {
+      this.todos = res;
+    });
   }
 
   public getLocation() {
@@ -30,7 +39,7 @@ export class HomePage {
     this.geolocation
       .getCurrentPosition()
       .then(resp => {
-      
+
         if (resp) {
           this.geoCoder.reverseGeocode(resp.coords.latitude, resp.coords.longitude)
             .then((result: NativeGeocoderResult[]) => {

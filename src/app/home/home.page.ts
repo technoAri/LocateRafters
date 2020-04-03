@@ -26,7 +26,6 @@ export class HomePage {
   }
 
   public getLocation() {
-    // console.log("geolocation called");
     this.geolocation
       .getCurrentPosition()
       .then(resp => {

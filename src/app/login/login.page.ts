@@ -12,12 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   firebaseConfig = {
-    apiKey: 'AIzaSyC5TEUV5TJ1lGW6fztdZU_FCMLUiGZNzLk',
-    // authDomain: "<your-project-authdomain>",
-    // databaseURL: "<your-database-URL>",
-    projectId: 'locaterafters',
-    // storageBucket: "<your-storage-bucket>",
-    // messagingSenderId: "<your-messaging-sender-id>"
+    
   };
 
   userProfile: any = null;

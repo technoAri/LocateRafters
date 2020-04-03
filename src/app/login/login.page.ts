@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { config } from '@ionic/core';
 import { Router } from '@angular/router';
+import { AppModule } from '../app.module';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,14 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   firebaseConfig = {
-    apiKey: 'AIzaSyC5TEUV5TJ1lGW6fztdZU_FCMLUiGZNzLk',
-    // authDomain: "<your-project-authdomain>",
-    // databaseURL: "<your-database-URL>",
-    projectId: 'locaterafters',
-    // storageBucket: "<your-storage-bucket>",
-    // messagingSenderId: "<your-messaging-sender-id>"
+    apiKey: "AIzaSyBaTnrq_Cx0K_IwcNOyb8EiutxwLUGA6E4",
+    authDomain: "locaterafters-6d77b.firebaseapp.com",
+    databaseURL: "https://locaterafters-6d77b.firebaseio.com",
+    projectId: "locaterafters-6d77b",
+    storageBucket: "locaterafters-6d77b.appspot.com",
+    messagingSenderId: "211339870495",
+    appId: "1:211339870495:web:875a73cba99aa4f422302a",
+    measurementId: "G-BJSSJBNCQF"
   };
 
   userProfile: any = null;
@@ -44,7 +47,7 @@ export class LoginPage implements OnInit {
     this.googlePlus
       .login({
         webClientId:
-          '424112178216-adfgvs75uklntj3pa7p4uetr8kml59f9.apps.googleusercontent.com',
+          '211339870495-qci1epqos8n5hki9u1mcnbf3vo486qoo.apps.googleusercontent.com',
         offline: true
       })
       .then(

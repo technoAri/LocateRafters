@@ -9,25 +9,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { LoginPage } from './login/login.page';
 import { LoginPageModule } from './login/login.module';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { environment } from 'src/environments/environment.prod';
+import * as firebase from 'firebase';
 
-var firebaseConfig = {
-  apiKey: 'AIzaSyDtx0UBkNLctituiP7bD2mQD2rS3oYbWzY',
-  authDomain: 'locaterafters.firebaseapp.com',
-  databaseURL: 'https://locaterafters.firebaseio.com',
-  projectId: 'locaterafters',
-  storageBucket: 'locaterafters.appspot.com',
-  messagingSenderId: '424112178216',
-  appId: '1:424112178216:web:8237f2b1c9efe2b2faa11d',
-  measurementId: 'G-PXP7R08K48'
+export const firebaseConfig = {
+  apiKey: "AIzaSyBaTnrq_Cx0K_IwcNOyb8EiutxwLUGA6E4",
+  authDomain: "locaterafters-6d77b.firebaseapp.com",
+  databaseURL: "https://locaterafters-6d77b.firebaseio.com",
+  projectId: "locaterafters-6d77b",
+  storageBucket: "locaterafters-6d77b.appspot.com",
+  messagingSenderId: "211339870495",
+  appId: "1:211339870495:web:875a73cba99aa4f422302a",
+  measurementId: "G-BJSSJBNCQF"
 };
-// Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +47,8 @@ var firebaseConfig = {
     NativeGeocoder,
     LoginPage,
     LoginPageModule,
+    AngularFirestore,
+    AngularFireDatabase,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

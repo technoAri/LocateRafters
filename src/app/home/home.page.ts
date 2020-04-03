@@ -4,6 +4,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 import { LoginPage } from '../login/login.page';
 import { Todo, TodoService } from '../services/todo.service';
+import { AngularFirestoreCollection, AngularFirestore, } from '@angular/fire/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +20,17 @@ export class HomePage {
   isIndiaPressed = false;
   isSAPressed = false;
   todos: Todo[];
+  firebase: any;
 
   constructor(private geolocation: Geolocation,
-              private geoCoder: NativeGeocoder,
-              private loginPage: LoginPage,
-              private todoService: TodoService) {
+    private geoCoder: NativeGeocoder,
+    private loginPage: LoginPage,
+    private todoService: TodoService,
+    private firestore: AngularFirestore,
+    private db: AngularFireDatabase
+  ) {
     this.country = 'india';
+    // firebase =
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
@@ -73,6 +80,8 @@ export class HomePage {
           for (let i = 0; i < this.raftersListIndia.length; i++) {
             if (this.raftersListIndia[i] === this.raftersListIndia[i + 1]) {
               this.raftersListIndia.splice(i + 1);
+              this.firestore.collection('/locaterafters').add({ rafterName: this.loginPage.userProfile.displayName });
+              
             }
           }
           for (let i = 0; i < this.raftersListSA.length; i++) {
@@ -96,7 +105,11 @@ export class HomePage {
     if (event.detail.value === 'india') {
       this.isIndiaPressed = true;
       this.isSAPressed = false;
+      this.firestore.collection('/locaterafters').add({ rafterName: this.loginPage.userProfile.displayName });
       // saList.setV
+      this.db.database.ref('locaterafters').set({
+        rafterName: this.loginPage.userProfile.displayName
+      })
     } else {
       this.isSAPressed = true;
       this.isIndiaPressed = false;

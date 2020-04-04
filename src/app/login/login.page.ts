@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   firebaseConfig = {
-//     apiKey: "AIzaSyBaTnrq_Cx0K_IwcNOyb8EiutxwLUGA6E4",
-//     authDomain: "locaterafters-6d77b.firebaseapp.com",
-//     databaseURL: "https://locaterafters-6d77b.firebaseio.com",
-//     projectId: "locaterafters-6d77b",
-//     storageBucket: "locaterafters-6d77b.appspot.com",
+//     apiKey: "***************************************",
+//     authDomain: "***************************************",
+//     databaseURL: "***************************************",
+//     projectId: "***************************************",
+//     storageBucket: "l***************************************",
 //     messagingSenderId: "211339870495",
-//     appId: "1:211339870495:web:875a73cba99aa4f422302a",
+//     appId: "***************************************",
 //     measurementId: "G-BJSSJBNCQF"
   };
 
